@@ -1,11 +1,11 @@
 import 'dart:io';
+import 'calculator_operations.dart';
 
 void main(List<String> args) {
   calculate();
 }
 
 void calculate() {
-  // THE MAIN-MAIN FUNCTION
   print(
       "\nWelcome to Andrew Kim's CLI Calculator\n"); // Message for better UX on CLI
   sleep(const Duration(seconds: 2)); // delay to smoothen the program
@@ -27,56 +27,7 @@ void calculate() {
   }
 }
 
-// ----------------------- OPERATIONS ------------------------------- //
-void add(double firstNum, double secondNum) {
-  // adds firstNum to secondNum
-  print("${firstNum} + ${secondNum} = ${firstNum + secondNum}");
-}
-
-void subtract(double firstNum, double secondNum) {
-  // subtracts secondNum from firstNum
-  print("${firstNum} - ${secondNum} = ${firstNum - secondNum}");
-}
-
-void multiply(double firstNum, double secondNum) {
-  // multiplies firstNum by secondNum
-  print("${firstNum} * ${secondNum} = ${firstNum * secondNum}");
-}
-
-void max(double firstNum, double secondNum) {
-  // multiplies firstNum by secondNum
-  if (firstNum == secondNum) {
-    print("${firstNum} & ${secondNum} = EQUAL NUMBERS");
-  } else if (firstNum > secondNum) {
-    print("${firstNum} & ${secondNum}, MAX NUMBER: ${firstNum}");
-  } else if (secondNum > firstNum) {
-    print("${firstNum} & ${secondNum}, MAX NUMBER: ${secondNum}");
-  }
-}
-
-void min(double firstNum, double secondNum) {
-  // multiplies firstNum by secondNum
-  if (firstNum == secondNum) {
-    print("${firstNum} & ${secondNum}, EQUAL NUMBERS");
-  } else if (firstNum < secondNum) {
-    print("${firstNum} & ${secondNum}, MIN NUMBER: ${firstNum}");
-  } else if (secondNum < firstNum) {
-    print("${firstNum} & ${secondNum}, MIN NUMBER: ${secondNum}");
-  }
-}
 // ------------------------------------------------------------------ //
-
-void divide(double firstNum, double secondNum) {
-  // divides firstNum by secondNum
-  // to prevent division by zero
-  // we change it to 1
-  if (secondNum == 0) {
-    secondNum += 1;
-    print("[X DIVISION BY ZERO THROWS A MATH ERROR.");
-    print("PROGRAM PERFORMS X/1, RETURNS X.");
-  }
-  print("${firstNum} / ${secondNum} = ${firstNum / secondNum}");
-}
 
 void displayOperations() {
   // displays all operations
@@ -112,8 +63,8 @@ int validateChoice() {
 List getNums() {
   // prompts user to enter the two operands required for each operation
   var correctNums = false;
-  String theFirstNum = "";
-  String theSecondNum = "";
+  String? theFirstNum;
+  String? theSecondNum;
   while (correctNums == false) {
     print("\nEnter First Number (x): ");
     String? firstNum = stdin.readLineSync();
@@ -130,7 +81,7 @@ List getNums() {
       correctNums = true;
     }
   }
-  return [double.parse(theFirstNum), double.parse(theSecondNum)];
+  return [double.parse(theFirstNum!), double.parse(theSecondNum!)];
 }
 
 void operate(int yourChoice, List operands) {
@@ -138,22 +89,22 @@ void operate(int yourChoice, List operands) {
     // depending on user choice, program triggers operation functions
     // program users operands as arguments for operation fucntions
     case 1:
-      add(operands[0], operands[1]);
+      CalculatorOperations.add(operands[0], operands[1]);
       break;
     case 2:
-      subtract(operands[0], operands[1]);
+      CalculatorOperations.subtract(operands[0], operands[1]);
       break;
     case 3:
-      multiply(operands[0], operands[1]);
+      CalculatorOperations.multiply(operands[0], operands[1]);
       break;
     case 4:
-      divide(operands[0], operands[1]);
+      CalculatorOperations.divide(operands[0], operands[1]);
       break;
     case 5:
-      max(operands[0], operands[1]);
+      CalculatorOperations.max(operands[0], operands[1]);
       break;
     case 6:
-      min(operands[0], operands[1]);
+      CalculatorOperations.min(operands[0], operands[1]);
       break;
   }
 }
