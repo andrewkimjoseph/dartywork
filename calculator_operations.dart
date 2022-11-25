@@ -41,10 +41,9 @@ class CalculatorOperations {
     // to prevent division by zero
     // we change it to 1
     if (secondNum == 0) {
-      secondNum += 1;
-      print("[X DIVISION BY ZERO THROWS A MATH ERROR.");
-      print("PROGRAM PERFORMS X/1, RETURNS X.");
+      print("MATH ERROR");
+    } else {
+      print("${firstNum} / ${secondNum} = ${firstNum / secondNum}");
     }
-    print("${firstNum} / ${secondNum} = ${firstNum / secondNum}");
   }
 }
